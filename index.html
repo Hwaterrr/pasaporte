@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasaporte - Libro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .book-container {
+            position: relative;
+            width: 400px;
+            height: 500px;
+            overflow: hidden;
+            border: 2px solid #333;
+            border-radius: 10px;
+            background-color: white;
+        }
+
+        .book {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            /* Cambiar el ancho al total de las páginas (4 páginas, 400px cada una) */
+            width: calc(400px * 4);
+        }
+
+        .page {
+            width: 400px;
+            height: 500px;
+            position: relative;
+        }
+
+        .page img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2.5rem;
+            color: #333;
+            cursor: pointer;
+            z-index: 100;
+            user-select: none;
+        }
+
+        .left {
+            left: 10px;
+        }
+
+        .right {
+            right: 10px;
+        }
+
+        /* Estilos para la cédula en vertical */
+        .cedula-container {
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cedula-container h1 {
+            font-size: 25px;
+            color: #d32f2f;
+            margin-bottom: 15px;
+        }
+
+        .cedula-container img.passport-icon {
+            width: 100px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .cedula-container img {
+            width: 150px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .info-container {
+            text-align: left;
+            width: 100%;
+        }
+
+        .info-container p {
+            font-size: 14px;
+            margin: 5px 0;
+        }
+
+        .info-container .highlight {
+            color: #1976d2;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="book-container">
+        <div class="arrow left" id="prev">&#10094;</div>
+        <div class="book">
+            <!-- Página 1 - Portada -->
+            <div class="page">
+                <img src="imagenes/gsdfgsdfsd.jpeg" alt="Portada">
+            </div>
+            
+            <!-- Página 2 - Cédula en vertical -->
+            <div class="page">
+                <div class="cedula-container">
+                    <h1>REPÚBLICA DE COLOMBIA</h1>
+                    <img src="imagenes/possport.png" alt="Icono Pasaporte" class="passport-icon">
+                    <img src="imagenes/noFilter.webp" alt="Foto de Cédula">
+                    <div class="info-container">
+                        <p><strong>NOMBRE:</strong> <span class="highlight">Alejandro</span></p>
+                        <p><strong>APELLIDO:</strong> <span class="highlight">Adarve</span></p>
+                        <p><strong>EDAD:</strong> <span class="highlight">23</span></p>
+                        <p><strong>NACIONALIDAD:</strong> <span class="highlight">Pakistan</span></p>
+                        <p><strong>FECHA DE NACIMIENTO:</strong> <span class="highlight">20/01/1998</span></p>
+                        <p><strong>ESTATURA:</strong> <span class="highlight">174 cm</span></p>
+                        <p><strong>SEXO:</strong> <span class="highlight">Hombre</span></p>
+                        <p><strong>NÚMERO DE DOCUMENTO:</strong> <span class="highlight">1050294920</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Página 3 -->
+            <div class="page">
+                <img src="imagenes/fondo 3.png" alt="Página 3">
+            </div>
+
+            <!-- Página Final -->
+            <div class="page">
+                <img src="imagenes/gsdfgsdfsd.jpg" alt="Final">
+            </div>
+        </div>
+        <div class="arrow right" id="next">&#10095;</div>
+    </div>
+
+    <script>
+        let currentPage = 0;
+        const book = document.querySelector('.book');
+        const totalPages = 4;
+
+        document.getElementById('next').addEventListener('click', () => {
+            if (currentPage < totalPages - 1) {
+                currentPage++;
+                book.style.transform = `translateX(-${currentPage * 400}px)`;
+            }
+        });
+
+        document.getElementById('prev').addEventListener('click', () => {
+            if (currentPage > 0) {
+                currentPage--;
+                book.style.transform = `translateX(-${currentPage * 400}px)`;
+            }
+        });
+    </script>
+</body>
+</html>
